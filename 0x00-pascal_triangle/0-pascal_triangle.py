@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""
-0-pascal_triangle.py
-"""
+""" Script implementation of 0-pascal_triangle.py """
 
 
 def pascal_triangle(n):
+    """Creates a pascal triangle"""
+
     if n <= 0:
         return []
 
