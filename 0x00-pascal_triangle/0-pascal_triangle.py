@@ -8,20 +8,23 @@ def pascal_triangle(n):
     if n <= 0:
         return []
 
-    result = [[1]]
-    count = 0
+    result = []
 
-    while count < n:
-        temp = [0] + result[count] + [0]
+    while len(result) < n:
+        if len(result) == 0:
+            result.append([1])
+            continue
+
+        last_row = result[len(result) - 1]
         row = []
 
-        for index, value in enumerate(temp):
-            nextValue = temp[index + 1] if index + 1 < len(temp) else None
+        for i, item in enumerate(last_row):
+            next_item = 1 if i == 0 else last_row[i - 1] + item
+            row.append(next_item)
 
-            if nextValue is not None:
-                row.append(value + nextValue)
+            if len(row) == len(last_row):
+                row.append(row[0])
 
         result.append(row)
-        count += 1
 
     return result
