@@ -4,22 +4,11 @@
 
 def canUnlockAll(boxes):
     """Implementation of canUnlockAll function"""
-    keys = [0]
-    box_map = {}
-
-    for index, box in enumerate(boxes):
-        if index in keys:
-            keys = keys + box
-            box_map[index] = True
-
-        for key in box:
-            if box_map.get(key, None) is not None or key in keys:
-                keys.append(key)
-                box_map[key] = True
+    opened = [0]
+    
+    for index in opened:
+        for key in boxes[index]:
+            if key not in opened and key < len(boxes):
+                opened.append(key)
                 
-                if index in keys:
-                    keys = keys + boxes[key]
-            else:
-                box_map[index] = False
-                
-    return all(value == True or key in keys for key, value in box_map.items())
+    return len(boxes) == len(opened)
