@@ -8,14 +8,18 @@ def canUnlockAll(boxes):
     box_map = {}
 
     for index, box in enumerate(boxes):
+        if index in keys:
+            keys = keys + box
+            box_map[index] = True
+
         for key in box:
-            if index in keys:
-                keys = keys + box
-                box_map[index] = True
-            elif box_map.get(key, None) is not None:
+            if box_map.get(key, None) is not None or key in keys:
                 keys.append(key)
-                box_map[index] = True
+                box_map[key] = True
+                
+                if index in keys:
+                    keys = keys + boxes[key]
             else:
                 box_map[index] = False
-
-    return all(value == True for value in box_map.values())
+                
+    return all(value == True or key in keys for key, value in box_map.items())
