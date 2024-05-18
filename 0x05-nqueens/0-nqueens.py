@@ -25,29 +25,24 @@ def queen_down(N, i, queens, final_combo, col, pos, neg):
     return final_combo
 
 
-def main():
-    if len(sys.argv) != 2:
-        print("Usage: nqueens N")
-        sys.exit(1)
+if len(sys.argv) != 2:
+    print("Usage: nqueens N")
+    sys.exit(1)
 
-    try:
-        N = int(sys.argv[1])
-    except ValueError:
-        print("N must be a number")
-        sys.exit(1)
+try:
+    N = int(sys.argv[1])
+except ValueError:
+    print("N must be a number")
+    sys.exit(1)
 
-    if N < 4:
-        print("N must be at least 4")
-        sys.exit(1)
+if N < 4:
+    print("N must be at least 4")
+    sys.exit(1)
 
-    queens = []
-    col = pos = neg = []
+queens = []
+col = pos = neg = []
 
-    queen_down(N, 0, [], queens, col, pos, neg)
+queen_down(N, 0, [], queens, col, pos, neg)
 
-    for queen in queens:
-        print(queen)
-
-
-if __name__ == "__main__":
-    main()
+for queen in queens:
+    print(queen)
